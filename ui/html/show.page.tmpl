@@ -1,0 +1,27 @@
+<!-- 引用基础模板 -->
+{{template "base" .}}
+
+<!-- 定义浏览器标题栏 -->
+{{define "title"}} 
+    Snippet #{{.Snippet.ID}}
+{{end}}
+
+<!-- body -->
+{{define "body"}}
+    {{with .Snippet}}
+    <div class='snippet'>
+        <div class='metadata'>
+            <strong>{{.Title}}</strong>
+            <span>#{{.ID}}</span>
+        </div>
+        <pre>
+            <code>{{.Content}}</code>
+        </pre>
+        <div class='metadata'>
+            <!--使用模板函数 转换时间格式-->
+            <time>Created: {{humanDate .Created}}</time>
+            <time>Expires: {{humanDate .Expires}}</time>
+        </div>
+    </div>
+    {{end}}
+{{end}}
